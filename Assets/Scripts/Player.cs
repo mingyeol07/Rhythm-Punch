@@ -6,22 +6,24 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Sprite")]
-    [SerializeField] private Sprite leftReady;
-    [SerializeField] private Sprite rightReady;
-    [SerializeField] private Sprite leftJab;
-    [SerializeField] private Sprite rightJab;
-    [SerializeField] private Sprite guard;
-    [SerializeField] private Sprite hit;
+    public Sprite leftReady;
+    public Sprite rightReady;
+    public Sprite leftJab;
+    public Sprite rightJab;
+    public Sprite guard;
+    public Sprite hit;
 
     private Animator animCon;
+    public SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         animCon = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         InvokeRepeating("Beat", 1, 1);
     }
 
-    private void Beat()
+    public void Beat()
     {
         animCon.SetTrigger("Beat");
     }
@@ -36,19 +38,19 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
-
+            spriteRenderer.sprite = leftReady;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-
+            spriteRenderer.sprite = rightReady;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-
+            spriteRenderer.sprite = guard;
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-
+            spriteRenderer.sprite = hit;
         }
     }
 }
